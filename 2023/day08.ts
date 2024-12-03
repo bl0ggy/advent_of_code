@@ -1,4 +1,39 @@
-import { data } from './day08_data.ts';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const currentFile: path.ParsedPath = path.parse(import.meta.filename ?? '');
+const data: string = fs
+    .readFileSync(`${currentFile.dir}/${currentFile.name}_input.txt`)
+    .toString();
+const allLines = data.split('\n');
+allLines.pop(); // Remove empty last line
+
+const steps = allLines[0].split('') as ('L' | 'R')[];
+type Node = {
+    'L': string;
+    'R': string;
+};
+const nodes: {
+    [key: string]: Node;
+} = {};
+const nodeLines = allLines.slice(2);
+for (const line of nodeLines) {
+    const [node, LR] = line.split(' = ');
+    const [L, R] = LR.substring(1, LR.length - 1)
+        .split(', ');
+    nodes[node] = { L, R };
+}
+
+let currentNode = 'AAA';
+for (let i = 0;; i += 1) {
+    const node = nodes[currentNode];
+    const step = steps[i % steps.length];
+    currentNode = node[step];
+    if (currentNode === 'ZZZ') {
+        console.log('Part 1:', i + 1); // 14681
+        break;
+    }
+}
 
 // Not done, I'm not okay with a so specific case of looping paths
 

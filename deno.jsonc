@@ -1,0 +1,34 @@
+{
+    "lint": {
+        "include": [
+            "."
+        ],
+        "exclude": [],
+        "rules": {
+            "tags": [
+                "recommended"
+            ],
+            "include": [
+                "prefer-const",
+                ""
+            ],
+            "exclude": [
+                "ban-untagged-todo",
+                "no-unused-vars",
+                ""
+            ]
+        }
+    },
+    "fmt": {
+        "useTabs": false,
+        "lineWidth": 80,
+        "indentWidth": 4,
+        "semiColons": true,
+        "singleQuote": true,
+        "proseWrap": "preserve",
+        "include": [
+            "."
+        ],
+        "exclude": []
+    }
+}
