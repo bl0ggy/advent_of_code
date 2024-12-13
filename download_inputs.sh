@@ -32,4 +32,5 @@ do
             break
         fi
     fi
+    chmod -w $filename
 done
